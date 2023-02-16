@@ -1,5 +1,6 @@
 import torch
 import matplotlib.pyplot as plt
+from utils.metric import *
 
 def train(model, lossFunction, dataloader_train, dataloader_val=None, num_epochs=50, lr=1e-5, milestones_lr=[36], gamma=0.1, device=torch.device('cpu'), display=False):
     criterion = lossFunction
@@ -30,5 +31,8 @@ def train(model, lossFunction, dataloader_train, dataloader_val=None, num_epochs
                 for iii in range(cm.shape[0]):
                     plt.text(iii, ii, str(cm[ii, iii].item()), va='center', ha='center')
             plt.show()
-            print('accuracy: {}'.format((torch.trace(cm)/cm.sum()).item()))
+            print('accuracy: {}'.format(accuracy(cm).item()))
+            print('precision: {}'.format(precision(cm).item()))
+            print('recall: {}'.format(recall(cm).item()))
+            print('f1: {}'.format(f1(cm).item()))
         scheduler.step()
