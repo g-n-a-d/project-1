@@ -20,4 +20,4 @@ def recall(cm):
     return (cm.diag()/cm.sum(dim=0)).mean()
 
 def f1(cm):
-    return 2*(precision(cm) + recall(cm))/(precision(cm)*recall(cm))
+    return 2*(precision(cm)*recall(cm))/(precision(cm) + recall(cm))
