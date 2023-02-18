@@ -14,7 +14,7 @@ class downLayer(torch.nn.Module):
         return out
     
 class v2iDownLayer(torch.nn.Module):
-    def __init__(self, inputDim, outputShape=(224, 224), numLayer=3):
+    def __init__(self, inputDim, numLayer=3):
         super().__init__()
         layerList = torch.nn.ModuleList([torch.nn.Sequential(
             torch.nn.Conv1d(1, inputDim//2, kernel_size=7, padding=3),
