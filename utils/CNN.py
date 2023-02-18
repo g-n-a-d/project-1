@@ -1,5 +1,6 @@
 import torch
 from torchvision import resnet18
+from utils.modules import v2iDownLayer
 
 class CNN(torch.nn.Module):
     def __init__(self, inputDim, outputDim, imgShape=(224, 224), num_downLayer=3):
