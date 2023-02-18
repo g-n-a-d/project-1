@@ -1,4 +1,5 @@
 import torch
+from utils.modules import downLayer
 
 class DNN(torch.nn.Module):
     def __init__(self, inputDim, outputDim, num_downLayer):
