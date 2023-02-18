@@ -3,7 +3,7 @@ from torchvision import resnet18
 from utils.modules import v2iDownLayer
 
 class CNN(torch.nn.Module):
-    def __init__(self, inputDim, outputDim, imgShape=(224, 224), num_downLayer=3):
+    def __init__(self, inputDim, outputDim, num_downLayer=3):
         super().__init__()
         self.v2i = v2iDownLayer(inputDim, imgShape, num_downLayer)
         self.conv = torch.nn.Sequential(
