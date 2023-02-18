@@ -14,9 +14,6 @@ class BODMAS(torch.utils.data.Dataset):
     def __len__(self):
         return self.x.shape[0]
 
-    def getLabel(self):
-        return self.ohe.categories_[0]
-
     def __getitem__(self, index):
         x_ = torch.Tensor(self.x[index])
         label_ = torch.Tensor(self.ohe.transform([[self.label[index]]]).toarray().reshape(-1,))
