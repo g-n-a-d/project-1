@@ -1,6 +1,10 @@
 from sklearn.model_selection import train_test_split
 from utils.tf_idf import TF_IDF
 
+def BODMAS_split(df, test_size=0.1):
+    x_train, x_test, y_train, y_test = train_test_split(df.iloc[:, :-1], df['category'], test_size=test_size)
+    return x_train, x_test, y_train, y_test
+
 def APISeq_split_TFIDF(df, test_size=0.12):
     words = list(map(lambda s: s.split(','), list(df['api'])))
     label = list(df['class'])
