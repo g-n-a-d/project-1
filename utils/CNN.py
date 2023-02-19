@@ -1,5 +1,5 @@
 import torch
-from torchvision import resnet18
+from torchvision.models import resnet18
 from utils.modules import v2iDownLayer
 
 class CNN(torch.nn.Module):
@@ -9,7 +9,7 @@ class CNN(torch.nn.Module):
         self.conv = torch.nn.Sequential(
             torch.nn.Conv2d(1, 3, kernel_size=3, padding=1),
             torch.nn.BatchNorm2d(num_features=3),
-            torch.nn.ReLU()
+            torch.nn.ReLU(),
         )
         self.resnet = resnet18()
         self.resnet.fc = torch.nn.Linear(512, outputDim)
