@@ -1,3 +1,4 @@
+from sklearn.model_selection import train_test_split
 from utils.tf_idf import TF_IDF
 
 def APISeq_split_TFIDF(df, test_size=0.12):
