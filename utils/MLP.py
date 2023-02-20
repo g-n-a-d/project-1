@@ -1,7 +1,7 @@
 import torch
 from utils.modules import downLayer
 
-class DNN(torch.nn.Module):
+class MLP(torch.nn.Module):
     def __init__(self, inputDim, outputDim, num_downLayer):
         super().__init__()
         self.dnn = torch.nn.Sequential(
