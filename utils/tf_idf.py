@@ -1,3 +1,5 @@
+from math import log
+
 def TF(doc):
     tf = {}
     wordDict = {}
@@ -35,5 +37,5 @@ def TF_IDF(doc):
     tf = TF(doc)
     idf = IDF(doc)
     for word in tf.keys():
-        tf_idf[word] = tf[word]*idf[word]
+        tf_idf[word] = log(tf[word]*idf[word])
     return tf_idf
