@@ -62,3 +62,19 @@ class APISeq_token(torch.utils.data.Dataset):
             x_ = torch.cat((x_, torch.zeros(self.size - x_.shape[0]).int()), dim=0)
         label_ = torch.Tensor(self.ohe.transform([self.label[index]]).toarray().reshape(-1,))
         return x_, label_
+
+class APISeq(torch.utils.data.Dataset):
+    def __init__(self, x, label):
+        self.x = x
+        self.label = list(map(lambda w: [w], label))
+        self.tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
+        self.ohe = OneHotEncoder(handle_unknown='ignore')
+        self.ohe.fit(self.label)
+
+    def __len__(self):
+        return len(self.x)
+
+    def __getitem__(self, index):
+        x_ = self.tokenizer(self.x[index], return_tensors='pt', padding='max_length', truncation=True)
+        label_ = torch.Tensor(self.ohe.transform([self.label[index]]).toarray().reshape(-1,))
+        return x_, label_
