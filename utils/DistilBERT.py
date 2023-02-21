@@ -1,4 +1,5 @@
 import torch
+from transformers import DistilBertModel
 
 class DistilBERT(torch.nn.Module):
     def __init__(self, outputDim):
