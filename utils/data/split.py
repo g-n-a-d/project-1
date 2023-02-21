@@ -29,7 +29,7 @@ def APISeq_split_token(df, test_size=0.1):
     return x_train, x_test, y_train, y_test, counter
 
 def APISeq_split_DB(df, test_size=0.1):
-    words = list(map(lambda s: s.split(','), list(df['api'])))
+    words = list(map(lambda s: s.split(',').join(' '), list(df['api'])))
     label = list(df['class'])
     x_train, x_test, y_train, y_test = train_test_split(words, label, test_size=test_size)
     return x_train, x_test, y_train, y_test
