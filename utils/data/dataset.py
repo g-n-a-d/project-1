@@ -63,7 +63,7 @@ class APISeq_token(torch.utils.data.Dataset):
             x_ = torch.cat((x_, torch.zeros(self.size - x_.shape[0]).int()), dim=0)
         label_ = torch.Tensor(self.ohe.transform([self.label[index]]).toarray().reshape(-1,))
         return x_, label_
-
+    
 class APISeq(torch.utils.data.Dataset):
     def __init__(self, x, label):
         self.x = x
@@ -77,5 +77,6 @@ class APISeq(torch.utils.data.Dataset):
 
     def __getitem__(self, index):
         x_ = self.tokenizer(self.x[index], return_tensors='pt', padding='max_length', truncation=True)
+        x_['input_ids'] = x_['input_ids'].squeeze(0)
         label_ = torch.Tensor(self.ohe.transform([self.label[index]]).toarray().reshape(-1,))
         return x_, label_
