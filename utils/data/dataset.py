@@ -1,6 +1,7 @@
 import torch
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import OneHotEncoder
+from transformers import DistilBertTokenizer
 
 class BODMAS(torch.utils.data.Dataset):
     def __init__(self, x, label):
